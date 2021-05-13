@@ -1,17 +1,26 @@
-# Rust RTIC STM32 project template
+# Toy MAX30102 cardiac monitor
 
-Basic config defaults to stm32f1.
+## MCU/Display
 
-# Links
+Re-purposed and slightly modified Makerbase MKS TFT32_L V3.0 display board from an old 3d printer.
 
-* [Awesome embedded Rust](https://github.com/rust-embedded/awesome-embedded-rust)
-* [Cortex-m RTIC examples](https://github.com/rtic-rs/cortex-m-rtic/tree/master/examples)
-* [RTIC RS Book](https://rtic.rs/0.5/book/en/)
-* [RTIC RS](https://github.com/rtic-rs)
+### MKS board
 
+USB port is [hacked](./doc/MKS-TFT32_L-V3.0_004-SCH-MOD.svg) to connect MAX30102 module (I2C).
 
-# New repo
+## Example output
 
-```bash
-rsync -av --exclude '.git' --ignore-existing ./ ../new-repo/
-```
+![example screenshot](./doc/example.jpg)
+
+## Links
+
+* [Rust RTIC](https://rtic.rs/dev/book/en/)
+
+* [MKS Hardware](https://github.com/makerbase-mks/MKS-TFT-Hardware/tree/master/MKS%20TFT32/MKS%20TFT32_L%20V3.x)
+* [LCD ILI9328](https://cdn-shop.adafruit.com/datasheets/ILI9328.pdf)
+
+* [MAX30102 module](https://mhetlive.nodebb.com/topic/44/mh-et-live-max30102-pulse-oximeter-and-heart-rate-sensor)
+* [MAX30102 arduino lib](https://github.com/MHEtLive/MH-ET-LIVE-max30102/tree/master/Arduino%20code/MH_MAX3010x_Sensor_Library-master)
+* [MAX30102 datasheet](https://datasheets.maximintegrated.com/en/ds/MAX30102.pdf)
+* [MAX30102 Rust driver](https://github.com/eldruin/max3010x-rs)
+* [MAX30102 instructable](https://www.instructables.com/Pulse-Oximeter-With-Much-Improved-Precision/)

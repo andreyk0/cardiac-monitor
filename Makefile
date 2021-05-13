@@ -1,11 +1,17 @@
-NAME?=blink
+NAME?=main
 # debug | release
 BUILD?=debug
-ELF_TARGET:=target/thumbv7m-none-eabi/$(BUILD)/$(NAME)
-BIN_TARGET:=target/$(NAME).bin
+ELF_TARGET:=app/target/thumbv7m-none-eabi/$(BUILD)/$(NAME)
+BIN_TARGET:=app/target/$(NAME).bin
+
+all: build test
+
+test:
+	cargo test --workspace
 
 build: fmt
-	cargo build $(if $(findstring release,$(BUILD)),--release,)
+	cargo build --workspace
+	cd app && cargo build $(if $(findstring release,$(BUILD)),--release,)
 
 # Requires openocd running
 debug: build
@@ -17,11 +23,12 @@ bin: build
 disassemble: build
 	arm-none-eabi-objdump --disassemble $(ELF_TARGET) | less -S
 
+.PHONY: doc
 doc:
-	cargo doc --open
+	cd app && cargo doc --open
 
 fmt:
-	find src -type f -name '*.rs' | xargs rustfmt
+	find . -type f -name '*.rs' | xargs rustfmt
 
 flash: bin erase
 	st-info --descr
@@ -32,6 +39,7 @@ erase:
 
 clean:
 	cargo clean
+	cd app && cargo clean
 
 picocom:
 	picocom -b 115200 --imap lfcrlf /dev/ttyACM0

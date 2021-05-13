@@ -1,0 +1,8 @@
+[package]
+authors = ["Andrey Kartashov <andrey.kartashov@gmail.com>"]
+edition = "2018"
+readme = "README.md"
+name = "cardiac_monitor_shared"
+version = "0.1.0"
+
+[dependencies]
